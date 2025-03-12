@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalist Image Uploader</title>
+    <style>
+        /* General Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(120deg, #694141, #6e4a4a); /* Deep Coffee Shades */
+            color: white;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            width: 90%;
+            max-width: 350px;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        h1 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        label {
+            font-size: 16px;
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background: rgba(168, 116, 116, 0.2);
+            color: white;
+            outline: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+        }
+
+        button {
+            background: #D2691E; /* Coffee Brown */
+            color: white;
+            border: none;
+            padding: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 8px;
+            width: 100%;
+            margin-top: 12px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background: #8B4513;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Uploaded Image Styling */
+        .image-container {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #D2691E;
+            border-radius: 12px;
+            display: inline-block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .uploaded-image {
+            max-width: 100%;
+            max-height: 180px; /* Concise Display */
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .uploaded-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Your Image</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="first">Choose an image:</label>
+            <input type="file" name="avatar" id="first" required> <br><br>
+            <button type="submit">Upload</button>
+        </form>
+
+        <% if (Url) { %>
+            <div class="image-container">
+                <h2>Uploaded Successfully!</h2>
+                <img class="uploaded-image" src="<%= Url %>" alt="Uploaded Image">
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>
